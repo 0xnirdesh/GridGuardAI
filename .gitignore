@@ -1,0 +1,26 @@
+# Virtual environment
+venv/
+env/
+.venv/
+
+# Large data files (regenerate via preprocess.py)
+data/raw/
+data/processed/
+
+# Model checkpoints (regenerate via train_autoencoder.py)
+models/*.pt
+models/*.pkl
+
+# Python
+__pycache__/
+*.py[cod]
+*.egg-info/
+.ipynb_checkpoints/
+
+# OS / Editor
+.DS_Store
+.vscode/
+.idea/
+
+# Jupyter
+*.ipynb_checkpoints/
