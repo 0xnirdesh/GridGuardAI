@@ -58,9 +58,9 @@ def main():
 
     val_errs, val_labs, _ = per_window_errors(model, val_loader, DEVICE)
     normal_val_errs = val_errs[val_labs == 0]
-    threshold = np.percentile(normal_val_errs, 95)
+    threshold = np.percentile(normal_val_errs, 85)
     print(f"Normal val errs: mean={normal_val_errs.mean():.6f}, "
-          f"p95={threshold:.6f}")
+          f"p85={threshold:.6f}")
 
     test_errs, test_labs, test_cids = per_window_errors(model, test_loader, DEVICE)
     preds = (test_errs > threshold).astype(int)

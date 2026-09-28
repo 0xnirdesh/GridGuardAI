@@ -11,7 +11,7 @@ import pandas as pd
 # ─────────────────────────────────────────────
 RAW_PATH      = "data/raw/sgcc.csv"
 OUTPUT_DIR    = "data/processed"
-MAX_CUSTOMERS = None  # Set to an integer to limit the number of customers (for testing)
+MAX_CUSTOMERS = None          # None = use full dataset (42,372 customers)
 os.makedirs(OUTPUT_DIR, exist_ok=True)
 
 
