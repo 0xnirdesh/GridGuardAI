@@ -69,7 +69,7 @@ Trained and compared multiple models on the SGCC dataset.
 **Best model:** XGBoost with 100 engineered features.
 
 **Key insight:** Raw magnitude features (mean, std, trend slope) + monthly consumption patterns are the strongest predictors of theft. Feature engineering gave bigger gains than model architecture changes.
-
+![GNN Results](docs/screenshots/gnn_results.png)
 ### Layer 3 — Federated Learning
 
 Simulated 5 DISCOMs training collaboratively **without sharing raw customer data**.
