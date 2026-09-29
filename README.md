@@ -74,7 +74,7 @@ Trained and compared multiple models on the SGCC dataset.
 
 ## 🚀 Quick Start
 
-```bash
+
 # Clone
 git clone https://github.com/0xnirdesh/GridGuardAI.git
 cd GridGuardAI
@@ -88,10 +88,8 @@ pip install -r requirements.txt
 # Then run:
 python src/preprocess.py
 python src/train_xgboost.py
-'''
+
 ---
-
-
 ## 📁 Project Structure 
 
 
