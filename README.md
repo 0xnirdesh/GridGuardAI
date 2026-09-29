@@ -59,7 +59,7 @@ Trained and compared multiple models on the SGCC dataset.
 | SMOTE + XGBoost | 0.39 | 0.40 | 0.40 | 0.38 | 0.78 |
 | 1D-CNN | — | — | 0.36 | 0.36 | — |
 | **XGBoost (best)** | **0.45** | **0.42** | **0.43** | **0.44** | **0.81** |
-
+![XGBoost Results](docs/screenshots/xgboost_results.png)
 ### Layer 2 — Graph Neural Network
 
 | Model | Precision | Recall | F1 | PR-AUC | ROC-AUC |
@@ -82,7 +82,7 @@ Simulated 5 DISCOMs training collaboratively **without sharing raw customer data
 **Key finding:** Federated learning achieves **88% of centralized F1** while preserving complete data privacy. The 11.5% performance drop is a worthwhile tradeoff — DISCOMs can collaborate without violating consumer privacy regulations.
 
 **Non-IID setup:** Each simulated DISCOM has a different theft ratio (3% to 13.5%), reflecting real-world heterogeneity.
-
+![Federated Results](docs/screenshots/federated_results.png)
 ---
 
 ## 🚀 Quick Start
