@@ -5,6 +5,7 @@
 ![Python](https://img.shields.io/badge/python-3.9+-blue)
 ![PyTorch](https://img.shields.io/badge/PyTorch-2.0+-red)
 ![XGBoost](https://img.shields.io/badge/XGBoost-2.0+-green)
+![License](https://img.shields.io/badge/license-MIT-green)
 
 ---
 
@@ -47,7 +48,7 @@ Plus (planned):
 
 ## 📈 Results
 
-Trained and compared 5 models on SGCC dataset.
+Trained and compared multiple models on the SGCC dataset.
 
 ### Layer 1 — Classical ML
 
@@ -67,7 +68,7 @@ Trained and compared 5 models on SGCC dataset.
 
 **Best model:** XGBoost with 100 engineered features.
 
-**Key insight:** Raw magnitude features (mean, std, trend slope) + monthly consumption patterns are the strongest predictors of theft.
+**Key insight:** Raw magnitude features (mean, std, trend slope) + monthly consumption patterns are the strongest predictors of theft. Feature engineering gave bigger gains than model architecture changes.
 
 ---
 
@@ -87,3 +88,72 @@ pip install -r requirements.txt
 # Then run:
 python src/preprocess.py
 python src/train_xgboost.py
+---
+
+## 📁 Project Structure 
+
+
+GridGuardAI/
+├── data/
+│ ├── raw/ # Original SGCC CSV (not in repo)
+│ └── processed/ # Cleaned .npz files
+├── models/ # Trained model checkpoints
+├── src/
+│ ├── # Data Pipeline
+│ ├── inspect_data.py # Explore raw dataset
+│ ├── preprocess.py # Cleaning, normalization, X_raw
+│ ├── check_processed.py # Verify processed data
+│ ├── dataset.py # PyTorch Dataset (lazy windows)
+│ │
+│ ├── # Layer 1a: LSTM Autoencoder
+│ ├── model_autoencoder.py # LSTM autoencoder architecture
+│ ├── train_autoencoder.py # Training loop
+│ ├── evaluate_autoencoder.py # Metrics + threshold tuning
+│ │
+│ ├── # Layer 1b: Classical ML
+│ ├── train_classifier.py # Feature engineering (100 features)
+│ ├── tune_threshold.py # RF threshold optimization
+│ ├── train_xgboost.py # XGBoost (best Layer 1 model)
+│ ├── train_smote_xgb.py # SMOTE + XGBoost variant
+│ ├── model_cnn.py # 1D-CNN architecture
+│ ├── train_cnn.py # CNN training
+│ ├── evaluate_cnn.py # CNN evaluation
+│ │
+│ ├── # Layer 2: Graph Neural Network
+│ ├── build_graph.py # Synthetic KNN graph builder
+│ ├── model_gnn.py # GraphSAGE architecture
+│ ├── train_gnn.py # GNN training
+│ ├── evaluate_gnn.py # GNN evaluation
+│ └── ensemble.py # XGBoost + GNN comparison
+│
+└── web/ # FastAPI + dashboard (planned)
+
+text
+
+
+
+---
+
+## 📈 Roadmap
+
+- [x] Data pipeline (preprocessing + feature engineering)
+- [x] Layer 1: LSTM Autoencoder baseline
+- [x] Layer 1: XGBoost with 100 engineered features (F1: 0.43)
+- [x] Layer 1: 1D-CNN experiment
+- [x] Layer 2: Graph Neural Network (GraphSAGE)
+- [ ] Layer 3: Federated Learning with differential privacy
+- [ ] Web backend (FastAPI)
+- [ ] Frontend dashboard with CSV upload
+- [ ] Report and final documentation
+
+---
+
+## 👤 Author
+
+**Nirdesh Rajput** — 3rd Year AI Lab Project
+
+---
+
+## 📜 License
+
+This project is licensed under the MIT License — see the [LICENSE](LICENSE) file for details.
