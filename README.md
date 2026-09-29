@@ -88,7 +88,9 @@ pip install -r requirements.txt
 # Then run:
 python src/preprocess.py
 python src/train_xgboost.py
+'''
 ---
+
 
 ## 📁 Project Structure 
 
@@ -129,12 +131,9 @@ GridGuardAI/
 └── web/ # FastAPI + dashboard (planned)
 
 text
-
-
-
 ---
 
-## 📈 Roadmap
+##📈 Roadmap
 
 - [x] Data pipeline (preprocessing + feature engineering)
 - [x] Layer 1: LSTM Autoencoder baseline
