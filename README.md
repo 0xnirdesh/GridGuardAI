@@ -34,7 +34,6 @@ Three-layer AI system:
 Plus (planned):
 - FastAPI backend — REST API for predictions
 - Web dashboard — CSV upload, results visualization
-cat >> README.md << 'EOF'
 
 ---
 
@@ -71,11 +70,7 @@ Trained and compared multiple models on the SGCC dataset.
 
 **Key insight:** Raw magnitude features (mean, std, trend slope) + monthly consumption patterns are the strongest predictors of theft. Feature engineering gave bigger gains than model architecture changes.
 
-cat >> README.md << 'EOF'
-
----
-
-## 🔐 Layer 3 — Federated Learning
+### Layer 3 — Federated Learning
 
 Simulated 5 DISCOMs training collaboratively **without sharing raw customer data**.
 
@@ -88,12 +83,11 @@ Simulated 5 DISCOMs training collaboratively **without sharing raw customer data
 
 **Non-IID setup:** Each simulated DISCOM has a different theft ratio (3% to 13.5%), reflecting real-world heterogeneity.
 
-EOF
 ---
 
 ## 🚀 Quick Start
 
-
+```bash
 # Clone
 git clone https://github.com/0xnirdesh/GridGuardAI.git
 cd GridGuardAI
@@ -104,60 +98,71 @@ source venv/bin/activate
 pip install -r requirements.txt
 
 # Download SGCC dataset → place at data/raw/sgcc.csv
-# Then run:
+
+# Run the pipeline
 python src/preprocess.py
 python src/train_xgboost.py
+python src/evaluate_gnn.py
+python -m src.federated.simulate
+```
 
 ---
-## 📁 Project Structure 
 
+## 📁 Project Structure
 
+```
 GridGuardAI/
 ├── data/
-│ ├── raw/ # Original SGCC CSV (not in repo)
-│ └── processed/ # Cleaned .npz files
-├── models/ # Trained model checkpoints
+│   ├── raw/                          # Original SGCC CSV (not in repo)
+│   └── processed/                    # Cleaned .npz files
+├── models/                           # Trained model checkpoints
 ├── src/
-│ ├── # Data Pipeline
-│ ├── inspect_data.py # Explore raw dataset
-│ ├── preprocess.py # Cleaning, normalization, X_raw
-│ ├── check_processed.py # Verify processed data
-│ ├── dataset.py # PyTorch Dataset (lazy windows)
-│ │
-│ ├── # Layer 1a: LSTM Autoencoder
-│ ├── model_autoencoder.py # LSTM autoencoder architecture
-│ ├── train_autoencoder.py # Training loop
-│ ├── evaluate_autoencoder.py # Metrics + threshold tuning
-│ │
-│ ├── # Layer 1b: Classical ML
-│ ├── train_classifier.py # Feature engineering (100 features)
-│ ├── tune_threshold.py # RF threshold optimization
-│ ├── train_xgboost.py # XGBoost (best Layer 1 model)
-│ ├── train_smote_xgb.py # SMOTE + XGBoost variant
-│ ├── model_cnn.py # 1D-CNN architecture
-│ ├── train_cnn.py # CNN training
-│ ├── evaluate_cnn.py # CNN evaluation
-│ │
-│ ├── # Layer 2: Graph Neural Network
-│ ├── build_graph.py # Synthetic KNN graph builder
-│ ├── model_gnn.py # GraphSAGE architecture
-│ ├── train_gnn.py # GNN training
-│ ├── evaluate_gnn.py # GNN evaluation
-│ └── ensemble.py # XGBoost + GNN comparison
+│   ├── # Data Pipeline
+│   ├── inspect_data.py               # Explore raw dataset
+│   ├── preprocess.py                 # Cleaning, normalization, X_raw
+│   ├── check_processed.py            # Verify processed data
+│   ├── dataset.py                    # PyTorch Dataset (lazy windows)
+│   │
+│   ├── # Layer 1a: LSTM Autoencoder
+│   ├── model_autoencoder.py          # LSTM autoencoder architecture
+│   ├── train_autoencoder.py          # Training loop
+│   ├── evaluate_autoencoder.py       # Metrics + threshold tuning
+│   │
+│   ├── # Layer 1b: Classical ML
+│   ├── train_classifier.py           # Feature engineering (100 features)
+│   ├── tune_threshold.py             # RF threshold optimization
+│   ├── train_xgboost.py              # XGBoost (best Layer 1 model)
+│   ├── train_smote_xgb.py            # SMOTE + XGBoost variant
+│   ├── model_cnn.py                  # 1D-CNN architecture
+│   ├── train_cnn.py                  # CNN training
+│   ├── evaluate_cnn.py               # CNN evaluation
+│   │
+│   ├── # Layer 2: Graph Neural Network
+│   ├── build_graph.py                # Synthetic KNN graph builder
+│   ├── model_gnn.py                  # GraphSAGE architecture
+│   ├── train_gnn.py                  # GNN training
+│   ├── evaluate_gnn.py               # GNN evaluation
+│   ├── ensemble.py                   # XGBoost + GNN comparison
+│   │
+│   └── federated/                    # Layer 3: Federated Learning
+│       ├── model.py                  # MLP for FL
+│       ├── client.py                 # Federated client
+│       ├── server.py                 # FedAvg aggregation
+│       └── simulate.py               # FL simulation
 │
-└── web/ # FastAPI + dashboard (planned)
+└── web/                              # FastAPI + dashboard (planned)
+```
 
-text
 ---
 
-##📈 Roadmap
+## 📈 Roadmap
 
 - [x] Data pipeline (preprocessing + feature engineering)
 - [x] Layer 1: LSTM Autoencoder baseline
 - [x] Layer 1: XGBoost with 100 engineered features (F1: 0.43)
 - [x] Layer 1: 1D-CNN experiment
 - [x] Layer 2: Graph Neural Network (GraphSAGE)
-- [ ] Layer 3: Federated Learning with differential privacy
+- [x] Layer 3: Federated Learning (F1: 0.38, privacy-preserving)
 - [ ] Web backend (FastAPI)
 - [ ] Frontend dashboard with CSV upload
 - [ ] Report and final documentation
