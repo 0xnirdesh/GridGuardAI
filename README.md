@@ -38,22 +38,6 @@ cat >> README.md << 'EOF'
 
 ---
 
-## 🔐 Layer 3 — Federated Learning
-
-Simulated 5 DISCOMs training collaboratively **without sharing raw customer data**.
-
-| Model | F1 | PR-AUC | ROC-AUC | Data Shared |
-|-------|-----|--------|---------|-------------|
-| XGBoost (centralized) | **0.434** | **0.437** | **0.809** | All raw data |
-| Federated MLP (5 clients) | 0.384 | 0.372 | 0.794 | **Only weights** |
-
-**Key finding:** Federated learning achieves **88% of centralized F1** while preserving complete data privacy. The 11.5% performance drop is a worthwhile tradeoff — DISCOMs can collaborate without violating consumer privacy regulations.
-
-**Non-IID setup:** Each simulated DISCOM has a different theft ratio (3% to 13.5%), reflecting real-world heterogeneity.
-
-EOF
----
-
 ## 📊 Dataset
 
 **SGCC** (State Grid Corporation of China)
@@ -87,6 +71,24 @@ Trained and compared multiple models on the SGCC dataset.
 
 **Key insight:** Raw magnitude features (mean, std, trend slope) + monthly consumption patterns are the strongest predictors of theft. Feature engineering gave bigger gains than model architecture changes.
 
+cat >> README.md << 'EOF'
+
+---
+
+## 🔐 Layer 3 — Federated Learning
+
+Simulated 5 DISCOMs training collaboratively **without sharing raw customer data**.
+
+| Model | F1 | PR-AUC | ROC-AUC | Data Shared |
+|-------|-----|--------|---------|-------------|
+| XGBoost (centralized) | **0.434** | **0.437** | **0.809** | All raw data |
+| Federated MLP (5 clients) | 0.384 | 0.372 | 0.794 | **Only weights** |
+
+**Key finding:** Federated learning achieves **88% of centralized F1** while preserving complete data privacy. The 11.5% performance drop is a worthwhile tradeoff — DISCOMs can collaborate without violating consumer privacy regulations.
+
+**Non-IID setup:** Each simulated DISCOM has a different theft ratio (3% to 13.5%), reflecting real-world heterogeneity.
+
+EOF
 ---
 
 ## 🚀 Quick Start
