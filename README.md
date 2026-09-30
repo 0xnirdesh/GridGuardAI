@@ -190,7 +190,7 @@ GridGuardAI comes with an interactive web dashboard where you can:
 
 **Demo:** Uploaded 42,372 customers → flagged 4,080 in **16.76 seconds**.
 ![Dashboard Results](docs/screenshots/dashboard_v2.png)
-![Dashboard Results](docs/screenshots/dashboard_results.png)
+![Dashboard Results](docs/screenshots/dashboard_result.png)
 
 **Run locally:**
 ```bash
