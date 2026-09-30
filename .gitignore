@@ -24,3 +24,5 @@ __pycache__/
 
 # Jupyter
 *.ipynb_checkpoints/
+__pycache__/
+web/static/uploads/
