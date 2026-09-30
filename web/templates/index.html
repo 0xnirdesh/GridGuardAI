@@ -3,27 +3,65 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>GridGuardAI — Electricity Theft Detection</title>
+    <title>GridGuardAI — AI-Powered Electricity Theft Detection</title>
     <link rel="stylesheet" href="/static/style.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 </head>
 <body>
 
+<div class="bg-grid"></div>
+<div class="bg-glow"></div>
+
 <header>
     <div class="container">
-        <h1>⚡ GridGuardAI</h1>
-        <p class="tagline">AI-powered electricity theft detection</p>
+        <div class="logo-wrap">
+            <div class="logo-icon">⚡</div>
+            <div>
+                <h1>GridGuardAI</h1>
+                <p class="tagline">AI-powered electricity theft detection</p>
+            </div>
+        </div>
+        <div class="header-badges">
+            <span class="badge-pill">🎯 F1: 0.43</span>
+            <span class="badge-pill">🔒 Privacy-Preserving</span>
+            <span class="badge-pill">⚡ 16s / 42K rows</span>
+        </div>
     </div>
 </header>
 
 <main class="container">
 
-    <!-- Upload Section -->
+    <section class="how-it-works">
+        <h3 class="section-mini-title">How it works</h3>
+        <div class="layers">
+            <div class="layer-card">
+                <div class="layer-num">1</div>
+                <div class="layer-emoji">🧠</div>
+                <h4>Per-Customer Anomaly</h4>
+                <p>XGBoost with 100 engineered features analyzes each customer's pattern</p>
+            </div>
+            <div class="layer-card">
+                <div class="layer-num">2</div>
+                <div class="layer-emoji">🕸️</div>
+                <h4>Grid Topology</h4>
+                <p>Graph Neural Network detects organized theft across connected customers</p>
+            </div>
+            <div class="layer-card">
+                <div class="layer-num">3</div>
+                <div class="layer-emoji">🔐</div>
+                <h4>Privacy-Preserving</h4>
+                <p>Federated learning lets DISCOMs collaborate without sharing data</p>
+            </div>
+        </div>
+    </section>
+
     <section id="upload-section" class="card">
-        <h2>Upload Smart Meter Data</h2>
+        <h2>📤 Upload Smart Meter Data</h2>
         <p class="hint">CSV format: rows = customers, columns = daily readings + <code>CONS_NO</code> + <code>FLAG</code> (optional)</p>
 
         <div id="drop-zone" class="drop-zone">
-            <p>Drag &amp; drop your CSV here</p>
+            <div class="drop-icon">📊</div>
+            <p class="drop-title">Drag &amp; drop your CSV here</p>
             <p class="or">or</p>
             <input type="file" id="file-input" accept=".csv" hidden>
             <button onclick="document.getElementById('file-input').click()" class="btn-primary">
@@ -34,24 +72,40 @@
 
         <div id="error-msg" class="error"></div>
 
-        <button id="predict-btn" class="btn-cta" disabled>Analyze Data</button>
+        <button id="predict-btn" class="btn-cta" disabled>
+            <span class="btn-glow"></span>
+            🚀 Analyze Data
+        </button>
+
         <div id="loader" class="loader hidden">
-            <div class="spinner"></div>
-            <p>Analyzing... This may take 30–60 seconds</p>
+            <div class="ai-brain">
+                <div class="brain-ring"></div>
+                <div class="brain-ring delay-1"></div>
+                <div class="brain-ring delay-2"></div>
+                <div class="brain-core">🧠</div>
+            </div>
+            <p class="loader-title">AI is analyzing your data...</p>
+            <div class="steps">
+                <div class="step" data-step="1"><span class="dot"></span>Loading CSV</div>
+                <div class="step" data-step="2"><span class="dot"></span>Preprocessing readings</div>
+                <div class="step" data-step="3"><span class="dot"></span>Extracting 100 features</div>
+                <div class="step" data-step="4"><span class="dot"></span>Running XGBoost model</div>
+                <div class="step" data-step="5"><span class="dot"></span>Ranking suspicious customers</div>
+            </div>
         </div>
     </section>
 
-    <!-- Results Section -->
     <section id="results-section" class="hidden">
-        <div class="card">
-            <h2>Analysis Summary</h2>
+
+        <div class="card reveal">
+            <h2>📈 Analysis Summary</h2>
             <div class="summary-grid">
                 <div class="stat">
                     <div class="stat-value" id="total-customers">0</div>
                     <div class="stat-label">Total Customers</div>
                 </div>
-                <div class="stat">
-                    <div class="stat-value danger" id="flagged-count">0</div>
+                <div class="stat danger">
+                    <div class="stat-value" id="flagged-count">0</div>
                     <div class="stat-label">Flagged as Suspicious</div>
                 </div>
                 <div class="stat">
@@ -65,8 +119,35 @@
             </div>
         </div>
 
-        <div class="card">
-            <h2>⚠️ Suspicious Customers</h2>
+        <div class="two-col">
+            <div class="card reveal">
+                <h2>🎯 Risk Distribution</h2>
+                <div class="chart-wrap">
+                    <canvas id="riskChart"></canvas>
+                </div>
+            </div>
+
+            <div class="card reveal">
+                <h2>💡 Top Risk Signals</h2>
+                <p class="hint">What the model found most suspicious</p>
+                <ul class="signal-list">
+                    <li><span>📉 Sudden consumption drop</span><strong>High</strong></li>
+                    <li><span>🌙 Abnormal night usage</span><strong>High</strong></li>
+                    <li><span>0️⃣ Long zero-consumption streak</span><strong>Medium</strong></li>
+                    <li><span>📊 Volatility shift</span><strong>Medium</strong></li>
+                    <li><span>📅 Monthly pattern break</span><strong>Medium</strong></li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="card reveal">
+            <div class="table-header">
+                <h2>⚠️ Suspicious Customers</h2>
+                <div class="table-actions">
+                    <input type="text" id="search-input" placeholder="🔍 Search customer ID..." class="search-input">
+                    <button id="download-btn" class="btn-secondary">⬇ Download CSV</button>
+                </div>
+            </div>
             <p class="hint">Sorted by risk score (highest first). Top 200 shown.</p>
             <div class="table-wrapper">
                 <table id="results-table">
@@ -83,14 +164,22 @@
             </div>
         </div>
 
-        <button onclick="location.reload()" class="btn-secondary">Analyze Another File</button>
+        <button onclick="location.reload()" class="btn-cta">
+            <span class="btn-glow"></span>
+            🔄 Analyze Another File
+        </button>
     </section>
 
 </main>
 
 <footer>
     <div class="container">
-        <p>GridGuardAI — 3rd Year AI Lab Project • <a href="https://github.com/0xnirdesh/GridGuardAI" target="_blank">GitHub</a></p>
+        <p>GridGuardAI — 3rd Year AI Lab Project</p>
+        <p class="footer-links">
+            <a href="https://github.com/0xnirdesh/GridGuardAI" target="_blank">GitHub</a> •
+            <a href="https://github.com/0xnirdesh/GridGuardAI#-results" target="_blank">Results</a> •
+            <a href="https://github.com/0xnirdesh/GridGuardAI#-architecture" target="_blank">Architecture</a>
+        </p>
     </div>
 </footer>
 
