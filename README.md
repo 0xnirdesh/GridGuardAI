@@ -178,3 +178,22 @@ GridGuardAI/
 ## 📜 License
 
 This project is licensed under the MIT License — see the [LICENSE](LICENSE) file for details.
+---
+
+## 🌐 Web Dashboard
+
+GridGuardAI comes with an interactive web dashboard where you can:
+- Upload any DISCOM's smart meter CSV
+- Get real-time theft predictions
+- View risk scores for each customer
+- Export suspicious customer lists
+
+**Demo:** Uploaded 42,372 customers → flagged 4,080 in **16.76 seconds**.
+
+![Dashboard Results](docs/screenshots/dashboard_results.png)
+
+**Run locally:**
+```bash
+python web/app.py
+# Open http://localhost:8000
+

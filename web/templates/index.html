@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GridGuardAI — Electricity Theft Detection</title>
+    <link rel="stylesheet" href="/static/style.css">
+</head>
+<body>
+
+<header>
+    <div class="container">
+        <h1>⚡ GridGuardAI</h1>
+        <p class="tagline">AI-powered electricity theft detection</p>
+    </div>
+</header>
+
+<main class="container">
+
+    <!-- Upload Section -->
+    <section id="upload-section" class="card">
+        <h2>Upload Smart Meter Data</h2>
+        <p class="hint">CSV format: rows = customers, columns = daily readings + <code>CONS_NO</code> + <code>FLAG</code> (optional)</p>
+
+        <div id="drop-zone" class="drop-zone">
+            <p>Drag &amp; drop your CSV here</p>
+            <p class="or">or</p>
+            <input type="file" id="file-input" accept=".csv" hidden>
+            <button onclick="document.getElementById('file-input').click()" class="btn-primary">
+                Choose File
+            </button>
+            <p id="file-name" class="file-name"></p>
+        </div>
+
+        <div id="error-msg" class="error"></div>
+
+        <button id="predict-btn" class="btn-cta" disabled>Analyze Data</button>
+        <div id="loader" class="loader hidden">
+            <div class="spinner"></div>
+            <p>Analyzing... This may take 30–60 seconds</p>
+        </div>
+    </section>
+
+    <!-- Results Section -->
+    <section id="results-section" class="hidden">
+        <div class="card">
+            <h2>Analysis Summary</h2>
+            <div class="summary-grid">
+                <div class="stat">
+                    <div class="stat-value" id="total-customers">0</div>
+                    <div class="stat-label">Total Customers</div>
+                </div>
+                <div class="stat">
+                    <div class="stat-value danger" id="flagged-count">0</div>
+                    <div class="stat-label">Flagged as Suspicious</div>
+                </div>
+                <div class="stat">
+                    <div class="stat-value" id="flagged-pct">0%</div>
+                    <div class="stat-label">Flag Rate</div>
+                </div>
+                <div class="stat">
+                    <div class="stat-value" id="proc-time">0s</div>
+                    <div class="stat-label">Processing Time</div>
+                </div>
+            </div>
+        </div>
+
+        <div class="card">
+            <h2>⚠️ Suspicious Customers</h2>
+            <p class="hint">Sorted by risk score (highest first). Top 200 shown.</p>
+            <div class="table-wrapper">
+                <table id="results-table">
+                    <thead>
+                        <tr>
+                            <th>#</th>
+                            <th>Customer ID</th>
+                            <th>Risk Score</th>
+                            <th>Recommendation</th>
+                        </tr>
+                    </thead>
+                    <tbody></tbody>
+                </table>
+            </div>
+        </div>
+
+        <button onclick="location.reload()" class="btn-secondary">Analyze Another File</button>
+    </section>
+
+</main>
+
+<footer>
+    <div class="container">
+        <p>GridGuardAI — 3rd Year AI Lab Project • <a href="https://github.com/0xnirdesh/GridGuardAI" target="_blank">GitHub</a></p>
+    </div>
+</footer>
+
+<script src="/static/app.js"></script>
+</body>
+</html>
