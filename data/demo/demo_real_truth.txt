@@ -1,0 +1,9 @@
+DEMO DATASET — GROUND TRUTH
+==================================================
+Source:        SGCC real-world data
+Total:         500
+Actual thieves: 41
+Honest:        459
+Theft rate:    8.20%
+
+Expected: model should flag 28-45 customers

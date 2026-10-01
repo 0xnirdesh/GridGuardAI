@@ -3,14 +3,7 @@ DEMO DATASET — GROUND TRUTH
 Total customers:  500
 Actual thieves:   20
 Honest customers: 480
-Days of data:     1033
+Days of data:     1034
 Theft rate:       4.00%
 
-Thief patterns used:
-  - sudden_drop     (consumption drops 65-85% after mid-point)
-  - meter_tamper    (multiple near-zero periods)
-  - gradual_decline (consumption declines over time)
-  - night_zero      (alternating low-consumption days)
-
-Expected model output: should flag 18-25 customers as suspicious.
-Perfect score: flags ~20 customers.
+Expected model output: should flag 15-30 customers.

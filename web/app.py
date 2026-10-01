@@ -34,7 +34,6 @@ templates = Jinja2Templates(directory="web/templates")
 # ─────────────────────────────────────────────
 MODEL_PATH = "models/xgboost.pkl"
 THRESHOLD = 0.6
-
 print("Loading model...")
 bundle = joblib.load(MODEL_PATH)
 MODEL = bundle["model"]
