@@ -1,5 +1,12 @@
 # ⚡ GridGuardAI
 
+**Developed in the AI Lab**  
+**By:** Nirdesh Kumar (2402221530085)  
+**Team:** Maksud Ansari, Nirdesh Kumar, Pushkar Tyagi (AIML B)  
+**Under the supervision of Ms. Anjali Srivastava**
+
+---
+
 **AI-powered electricity theft detection system** — detecting Non-Technical Losses (NTL) in smart grids using multi-layer deep learning.
 
 ![Python](https://img.shields.io/badge/python-3.9+-blue)
