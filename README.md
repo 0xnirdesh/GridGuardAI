@@ -2,7 +2,6 @@
 
 **Developed in the AI Lab**  
 **By:** Nirdesh Kumar (2402221530085)  
-**Team:** Maksud Ansari, Nirdesh Kumar, Pushkar Tyagi (AIML B)  
 **Under the supervision of Ms. Anjali Srivastava**
 
 ---
